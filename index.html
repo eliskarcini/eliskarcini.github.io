@@ -58,10 +58,57 @@
       padding: 14px 0;
     }
     nav .wrap { display: flex; align-items: center; justify-content: space-between; }
-    .nav-name { font-family: var(--serif); font-size: 1.05rem; color: var(--fg); }
+    .nav-name { font-family: var(--serif); font-size: 1.05rem; color: var(--fg); flex-shrink: 0; }
     .nav-links { display: flex; gap: 28px; list-style: none; }
     .nav-links a { color: var(--fg-muted); font-size: 0.875rem; transition: color 0.15s; }
     .nav-links a:hover { color: var(--fg); text-decoration: none; }
+
+    /* Hamburger */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      margin-left: 12px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--fg);
+      border-radius: 2px;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    @media (max-width: 600px) {
+      .nav-toggle { display: flex; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0; right: 0;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        gap: 0;
+        padding: 8px 0;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li a {
+        display: block;
+        padding: 12px 24px;
+        font-size: 0.95rem;
+        color: var(--fg);
+      }
+      .nav-links li a:hover { background: var(--bg-card); }
+    }
 
     /* Hero */
     #hero { padding: 88px 0 72px; border-bottom: 1px solid var(--border); }
@@ -165,15 +212,33 @@
 <nav>
   <div class="wrap">
     <span class="nav-name">Elis Karcini</span>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li><a href="#experience" class="nav-link">Experience</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
     </ul>
   </div>
 </nav>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const links  = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('open');
+    links.classList.toggle('open');
+  });
+  document.querySelectorAll('.nav-link').forEach(a => {
+    a.addEventListener('click', () => {
+      toggle.classList.remove('open');
+      links.classList.remove('open');
+    });
+  });
+</script>
 
 <!-- Hero -->
 <section id="hero">
@@ -186,7 +251,7 @@
       I build intelligent, high-performance systems where hardware and software meet.
     </p>
     <div class="hero-links">
-      <a href="mailto:eliskarcini@gmail.com" class="btn btn-primary">Get in touch</a>
+      <a href="/cdn-cgi/l/email-protection#b9dcd5d0cad2d8cbdad0d7d0f9ded4d8d0d597dad6d4" class="btn btn-primary">Get in touch</a>
       <a href="#projects" class="btn btn-ghost">View projects</a>
     </div>
   </div>
@@ -210,7 +275,7 @@
         <h4>Location</h4>
         <p>Melbourne, FL</p>
         <h4>Email</h4>
-        <p><a href="mailto:eliskarcini@gmail.com">eliskarcini@gmail.com</a></p>
+        <p><a href="/cdn-cgi/l/email-protection#b7d2dbdec4dcd6c5d4ded9def7d0dad6dedb99d4d8da"><span class="__cf_email__" data-cfemail="92f7fefbe1f9f3e0f1fbfcfbd2f5fff3fbfebcf1fdff">[email&#160;protected]</span></a></p>
       </div>
     </div>
   </div>
@@ -399,18 +464,7 @@
     <p class="section-label">Contact</p>
     <p class="contact-intro">Open to research collaborations, internship opportunities, and interesting engineering conversations.</p>
     <div class="contact-row">
-      <a href="mailto:eliskarcini@gmail.com" class="contact-item">✉ eliskarcini@gmail.com</a>
+      <a href="/cdn-cgi/l/email-protection#1471787d677f7566777d7a7d547379757d783a777b79" class="contact-item">✉ <span class="__cf_email__" data-cfemail="d6b3babfa5bdb7a4b5bfb8bf96b1bbb7bfbaf8b5b9bb">[email&#160;protected]</span></a>
       <a href="tel:3214748439" class="contact-item">☏ (321) 474-8439</a>
       <!-- Replace # with your actual GitHub and LinkedIn URLs -->
-      <a href="https://github.com/" class="contact-item" target="_blank" rel="noopener">⌥ GitHub</a>
-      <a href="https://linkedin.com/in/" class="contact-item" target="_blank" rel="noopener">in LinkedIn</a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">© 2026 Elis Karcini · Melbourne, FL</div>
-</footer>
-
-</body>
-</html>
+      <a href="https:/
